@@ -5,29 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>LMS for Training Companies | Sell, Deliver &amp; Scale, SimpliTrain</title>
 <meta name="description" content="SimpliTrain is the LMS built for training companies that sell courses. Multi-client portals, built-in TMS, SCORM/xAPI, AI authoring, flat-rate pricing. Book your free demo."/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Hanken+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --navy:        #0E1F45;
-    --navy-mid:    #163068;
-    --blue:        #1B6BB0;
-    --blue-light:  #2E87CC;
-    --cyan:        #27AECE;
-    --cyan-soft:   #5BC4DE;
+    /* New Theme Scheme */
+    --primary:     #0094FF;
+    --secondary:   #050C33;
+    --tertiary:    #E47100;
+    --neutral:     #73777F;
+
+    --navy:        var(--secondary);
+    --navy-mid:    #081244; 
+    --blue:        var(--primary);
+    --blue-light:  #33A9FF;
+    --cyan:        var(--primary);
+    --cyan-soft:   #4DB4FF;
     --sky:         #E5F5FB;
     --sky-deep:    #D0EAF7;
     --white:       #FFFFFF;
-    --gray-100:    #F7FAFC;
-    --gray-200:    #EDF2F7;
+    --gray-100:    #F5F6F8;
+    --gray-200:    #E9EBEF;
     --gray-300:    #CBD5E0;
-    --gray-500:    #718096;
+    --gray-500:    var(--neutral);
     --gray-700:    #4A5568;
-    --text-dark:   #0E1F45;
-    --text-body:   #374151;
+    --text-dark:   var(--secondary);
+    --text-body:   var(--neutral);
     --radius:      12px;
     --radius-sm:   8px;
-    --shadow:      0 4px 24px rgba(14,31,69,.08);
-    --shadow-md:   0 8px 40px rgba(14,31,69,.13);
+    --shadow:      0 4px 24px rgba(5,12,51,.08);
+    --shadow-md:   0 8px 40px rgba(5,12,51,.13);
     --transition:  .3s ease;
   }
 
@@ -36,12 +42,20 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     color: var(--text-body);
     background: var(--white);
     overflow-x: hidden;
     line-height: 1.7;
   }
+  h1, h2, h3, h4, h5, h6, .section-title, .pm-title, .impact-title, .recognition-title, .cta-headline, .outcomes-title, .btn-primary, .btn-ghost {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  .tag, .pm-eyebrow, .outcomes-eyebrow, .impact-eyebrow, .recognition-eyebrow, .integrations-eyebrow, .fm-badge, .pm-slider-label, .marquee-label, .h-stat-label, .metric-label {
+    font-family: 'Hanken Grotesk', sans-serif;
+  }
+
 
   img { max-width: 100%; display: block; }
 
@@ -57,9 +71,9 @@
     font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--cyan);
-    background: rgba(39,174,206,.1);
-    border: 1px solid rgba(39,174,206,.25);
+    color: var(--tertiary);
+    background: rgba(228, 113, 0, 0.1);
+    border: 1px solid rgba(228, 113, 0, 0.25);
     padding: 5px 14px;
     border-radius: 100px;
     margin-bottom: 20px;
@@ -86,7 +100,7 @@
     gap: 8px;
     background: var(--cyan);
     color: var(--white);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     font-weight: 600;
     padding: 14px 28px;
@@ -108,7 +122,7 @@
     gap: 8px;
     background: transparent;
     color: var(--white);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     font-weight: 500;
     padding: 13px 26px;
@@ -188,7 +202,27 @@
   }
   .nav-cta:hover { background: var(--blue-light); }
 
-  /* ── HERO ──────────────────────────────────────── */
+  
+  /* Protect Hero Section */
+  #hero, #hero *, .hero-h1, .hero-sub, .hero-eyebrow, .hero-stats * {
+    font-family: 'Poppins', sans-serif !important;
+  }
+  #hero .hero-eyebrow {
+    color: #5BC4DE !important;
+  }
+  #hero .hero-h1 span {
+    background: linear-gradient(135deg, #27AECE 0%, #2E87CC 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+  #hero .btn-primary {
+    background: #27AECE !important;
+  }
+  #hero .btn-primary:hover {
+    background: #2E87CC !important;
+    box-shadow: 0 8px 24px rgba(39,174,206,.35) !important;
+  }
+/* ── HERO ──────────────────────────────────────── */
   #hero {
     background: #070F22;
     min-height: 100vh;
@@ -1148,7 +1182,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: #2DD4BF;
+    color: var(--tertiary);
     font-weight: 700;
     margin-bottom: 16px;
     display: inline-block;
@@ -1163,7 +1197,7 @@
   }
   .pm-title span {
     display: block;
-    color: #2DD4BF;
+    color: var(--primary);
   }
   .pm-subtext {
     font-size: 14px;
@@ -1194,7 +1228,7 @@
   .pm-slider-value {
     font-size: 28px;
     font-weight: 800;
-    color: #2DD4BF;
+    color: var(--primary);
   }
   .pm-range-input {
     -webkit-appearance: none;
@@ -1266,7 +1300,7 @@
   }
   .pm-card.flat-rate .pm-card-badge {
     background: rgba(13,148,136,0.2);
-    color: #2DD4BF;
+    color: var(--primary);
   }
   .pm-model-label {
     font-size: 13px;
@@ -1280,7 +1314,7 @@
     margin-bottom: 4px;
   }
   .pm-card.per-learner .pm-cost { color: #F87171; }
-  .pm-card.flat-rate .pm-cost { color: #2DD4BF; }
+  .pm-card.flat-rate .pm-cost { color: var(--primary); }
   .pm-per-label {
     font-size: 12px;
     color: rgba(255,255,255,0.35);
@@ -1321,7 +1355,7 @@
   .pm-savings-val {
     font-size: 32px;
     font-weight: 800;
-    color: #2DD4BF;
+    color: var(--primary);
   }
   .pm-savings-right {
     font-size: 13px;
@@ -1414,7 +1448,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: #2DD4BF;
+    color: var(--primary);
     font-weight: 700;
     margin-bottom: 16px;
     display: block;
@@ -1449,7 +1483,7 @@
   .impact-number {
     font-size: 52px;
     font-weight: 800;
-    color: #2DD4BF;
+    color: var(--primary);
     letter-spacing: -0.03em;
     margin-bottom: 8px;
     line-height: 1;
@@ -1742,7 +1776,7 @@
     align-items: center;
     gap: 16px;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     font-weight: 600;
     color: var(--text-dark);
