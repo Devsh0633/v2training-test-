@@ -602,40 +602,29 @@
     background: var(--gray-100);
   }
   .features-intro { text-align: center; margin-bottom: 64px; }
-  .features-wrapper {
+  .features-carousel-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .features-track-container {
+    overflow: hidden;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .features-track {
     display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 24px;
-    scroll-snap-type: x mandatory;
-    margin: 0 -24px; /* full bleed edge to edge */
-    padding-left: 24px;
-    padding-right: 24px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--cyan) var(--gray-200);
+    transition: transform 0.5s ease;
+    gap: 32px;
   }
-  .features-wrapper::-webkit-scrollbar {
-    height: 6px;
-  }
-  .features-wrapper::-webkit-scrollbar-track {
-    background: var(--gray-200);
-    border-radius: 10px;
-  }
-  .features-wrapper::-webkit-scrollbar-thumb {
-    background: var(--cyan);
-    border-radius: 10px;
-  }
-
   .feature-block {
-    flex: 0 0 340px;
-    scroll-snap-align: center;
+    flex: 0 0 calc(50% - 16px);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
     background: var(--white);
     border: 1px solid var(--gray-200);
-    border-radius: 20px;
-    padding: 32px 24px;
+    border-radius: 24px;
+    padding: 40px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     margin-bottom: 0 !important;
   }
@@ -649,44 +638,11 @@
   .feature-block.reverse .feature-copy { order: 1; }
   
   .feature-block h2 {
-    font-size: 20px !important;
-    margin-bottom: 12px !important;
-  }
-  .feature-copy .tag {
-    font-size: 10px !important;
-    padding: 4px 10px !important;
-    margin-bottom: 12px !important;
-  }
-  .feature-check {
-    font-size: 13px !important;
-    align-items: flex-start !important;
-  }
-  .feature-check .check-icon {
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 9px !important;
-    margin-top: 2px !important;
-  }
-  .feature-stat {
-    font-size: 12px !important;
-    padding: 12px 14px !important;
-  }
-  .feature-mock {
-    padding: 20px !important;
-    min-height: 250px !important;
-  }
-  .fm-card {
-    padding: 10px 14px !important;
-  }
-  .fm-ai-input {
-    font-size: 11px !important;
-  }
-  .fm-ai-prompt {
-    font-size: 10.5px !important;
+    font-size: 24px !important;
   }
   
   @media (max-width: 900px) {
-    .feature-block { flex: 0 0 85vw; }
+    .feature-block { flex: 0 0 100%; }
   }
   .feature-visual {
     border-radius: var(--radius);
@@ -2059,7 +2015,9 @@
       <p class="section-sub" style="margin:12px auto 0;">Most LMS platforms show course completions. Most scheduling tools show calendar slots. SimpliTrain shows you the full picture — programs, clients, trainers, and performance — in one connected system.</p>
     </div>
 
-    <div class="features-wrapper">
+    <div class="features-carousel-wrapper">
+      <div class="features-track-container">
+        <div class="features-track" id="features-track">
     <!-- Feature 1: Multi-client portals -->
     <div class="feature-block fade-up">
       <div class="feature-visual">
@@ -2233,10 +2191,86 @@
         </div>
       </div>
     </div>
-    </div> <!-- End features-wrapper -->
+        </div>
+      </div>
+      <!-- Nav Bar -->
+      <div class="carousel-nav" style="margin-top: 40px;">
+        <button class="nav-btn" id="prev-features" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="nav-btn" id="next-features">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="features-dots">
+          <!-- JS will populate -->
+        </div>
+      </div>
+    </div> <!-- End features-carousel-wrapper -->
   </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.getElementById('features-track');
+  const prevBtn = document.getElementById('prev-features');
+  const nextBtn = document.getElementById('next-features');
+  const dotsContainer = document.getElementById('features-dots');
+  if(!track) return;
+  const cards = Array.from(track.children);
+  
+  let currentIndex = 0;
+  const totalCards = cards.length;
+  
+  // Create dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => jumpToIndex(i));
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = Array.from(dotsContainer.children);
+
+  function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 32;
+    const offset = currentIndex * (cardWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+    
+    prevBtn.disabled = currentIndex === 0;
+    
+    const visibleCount = window.innerWidth >= 900 ? 2 : 1;
+    nextBtn.disabled = currentIndex >= totalCards - Math.floor(visibleCount);
+    
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function jumpToIndex(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+
+  nextBtn.addEventListener('click', () => {
+    const visibleCount = window.innerWidth >= 900 ? 2 : 1;
+    if (currentIndex < totalCards - Math.floor(visibleCount)) {
+      currentIndex++;
+      updateCarousel();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
+    }
+  });
+
+  window.addEventListener('resize', updateCarousel);
+  setTimeout(updateCarousel, 100);
+});
+</script>
 
 <!-- ── CUSTOMER OUTCOMES ───────────────────────────── -->
 <section id="outcomes">
