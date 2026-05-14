@@ -696,8 +696,13 @@
     border: 1px solid var(--gray-200);
     border-radius: 24px;
     padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(5,12,51,0.05); /* Modernized shadow */
     margin-bottom: 0 !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .feature-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(5,12,51,0.08);
   }
   .feature-block .feature-visual {
     order: 2;
@@ -722,7 +727,7 @@
   }
   .feature-mock {
     background: linear-gradient(135deg, #f0f7ff 0%, #e3f0fb 100%);
-    border: 1px solid var(--sky-deep);
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     padding: 28px;
     min-height: 300px;
@@ -921,8 +926,8 @@
     font-size: 11px; flex-shrink: 0; margin-top: 2px;
   }
   .feature-stat {
-    background: var(--sky);
-    border: 1px solid var(--sky-deep);
+    background: #F1F5F9;
+    border: 1px solid var(--gray-200);
     border-radius: var(--radius-sm);
     padding: 12px 16px;
     font-size: 13px;
@@ -1130,7 +1135,7 @@
     text-align: center;
   }
   .comp-table th:nth-child(3) {
-    background: var(--navy);
+    background: var(--primary);
     color: var(--white);
     width: 33%;
     text-align: center;
@@ -1170,7 +1175,7 @@
 
   /* ── PRICING MODEL ─────────────────────────────── */
   #pricing-model {
-    background: #0B1F3A;
+    background: var(--secondary);
     padding: 72px 40px;
     font-family: 'DM Sans', sans-serif;
   }
@@ -1480,7 +1485,7 @@
     overflow: hidden;
   }
   .impact-block {
-    background: #0B1F3A;
+    background: var(--secondary);
     padding: 32px 28px;
     transition: background 0.3s ease;
   }
@@ -1520,7 +1525,7 @@
 
   /* ── INTEGRATIONS ──────────────────────────────── */
   #integrations {
-    background: #F2F5F9;
+    background: var(--white);
     padding: 80px 24px;
     font-family: 'DM Sans', sans-serif;
   }
@@ -1536,7 +1541,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: #0D9488;
+    color: var(--primary);
     font-weight: 700;
     margin-bottom: 16px;
     display: block;
@@ -1556,7 +1561,7 @@
   }
   .integrations-cta {
     display: inline-block;
-    background: #0D9488;
+    background: var(--primary);
     color: #fff;
     font-size: 13px;
     font-weight: 600;
@@ -1566,7 +1571,7 @@
     transition: background 0.3s ease;
   }
   .integrations-cta:hover {
-    background: #0F766E;
+    background: var(--blue-light);
   }
   
   .integrations-grid {
@@ -1590,7 +1595,7 @@
     min-width: 110px;
     font-size: 10px;
     text-transform: uppercase;
-    color: #0D9488;
+    color: var(--primary);
     font-weight: 700;
     margin-top: 6px;
   }
@@ -1610,8 +1615,8 @@
     transition: all 0.3s ease;
   }
   .integration-pill:hover {
-    border-color: #0D9488;
-    color: #0D9488;
+    border-color: var(--primary);
+    color: var(--primary);
   }
 
   @media (max-width: 900px) {
@@ -1649,7 +1654,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    color: #0D9488;
+    color: var(--primary);
     font-weight: 700;
     margin-bottom: 16px;
     display: inline-block;
@@ -1704,7 +1709,7 @@
   .recognition-badge.g2 { background: #FFF0EE; color: #FF492C; font-size: 11px; text-transform: uppercase; }
   .recognition-badge.capterra { background: #FFF4EE; color: #FF6B2B; font-size: 11px; text-transform: uppercase; }
   .recognition-badge.markets { background: #EEF2F8; color: #0B1F3A; font-size: 9px; text-transform: uppercase; }
-  .recognition-badge.software { background: #E6FBF8; color: #0D9488; font-size: 11px; text-transform: uppercase; }
+  .recognition-badge.software { background: #E6FBF8; color: var(--primary); font-size: 11px; text-transform: uppercase; }
   
   .recognition-rating {
     font-size: 40px;
@@ -1789,8 +1794,8 @@
   .faq-q:hover { color: var(--blue); }
   .faq-icon {
     width: 28px; height: 28px; border-radius: 50%;
-    background: var(--sky);
-    border: 1px solid var(--sky-deep);
+    background: #F1F5F9;
+    border: 1px solid var(--gray-200);
     color: var(--blue);
     display: flex; align-items: center; justify-content: center;
     font-size: 16px; flex-shrink: 0;
@@ -1815,7 +1820,7 @@
 
   /* ── FINAL CTA ─────────────────────────────────── */
   #final-cta {
-    background: linear-gradient(155deg, var(--navy) 0%, var(--navy-mid) 60%, #1a4a7a 100%);
+    background: linear-gradient(155deg, var(--secondary) 0%, #0A1B3D 50%, #002D54 100%);
     padding: 110px 24px;
     text-align: center;
     position: relative;
@@ -1849,7 +1854,7 @@
     line-height: 1.2;
     position: relative;
   }
-  .cta-headline span { color: var(--cyan); }
+  .cta-headline span { color: var(--primary); }
   .cta-sub {
     font-size: 16px;
     color: rgba(255,255,255,.6);
@@ -2852,7 +2857,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- Card 3 -->
       <div class="recognition-card">
-        <div class="recognition-top-accent" style="background: #0B1F3A;"></div>
+        <div class="recognition-top-accent" style="background: var(--secondary);"></div>
         <div class="recognition-badge markets">MarketsandMarkets™</div>
         <div class="recognition-year">2025</div>
         <div class="recognition-sublabel">LMS Market Matrix</div>
@@ -2862,7 +2867,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- Card 4 -->
       <div class="recognition-card">
-        <div class="recognition-top-accent" style="background: #0D9488;"></div>
+        <div class="recognition-top-accent" style="background: var(--primary);"></div>
         <div class="recognition-badge software">Software Advice</div>
         <div class="recognition-rating">4.5</div>
         <div class="recognition-stars">★★★★½</div>
