@@ -388,9 +388,9 @@
   #outcomes {
     padding: 80px 0;
     width: 100%;
-    background: #000000; /* Pure black to separate from metrics */
+    background: var(--white); /* Switched from black to white */
     font-family: 'DM Sans', sans-serif;
-    color: #fff;
+    color: var(--text-dark);
     overflow: hidden;
   }
 
@@ -409,7 +409,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: #94A3B8;
+    color: var(--gray-500);
     margin-bottom: 12px;
     display: block;
   }
@@ -426,8 +426,6 @@
   .carousel-wrapper {
     position: relative;
     padding-left: 40px; /* Align with heading */
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
   }
 
   .carousel-track-container {
@@ -445,7 +443,7 @@
     flex: 0 0 340px;
     border-radius: 20px;
     padding: 36px 32px 32px 32px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(5,12,51,0.1);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -453,7 +451,7 @@
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(5,12,51,0.12); /* Enhanced shadow for light bg */
   }
   .outcome-card::before {
     content: '';
@@ -470,7 +468,7 @@
     margin-top: 24px;
     font-size: 11px;
     font-weight: 800;
-    color: #fff;
+    color: var(--secondary); /* Dark link for white background */
     text-transform: uppercase;
     letter-spacing: 0.1em;
     display: inline-block;
@@ -586,9 +584,9 @@
   .nav-btn {
     width: 36px; height: 36px;
     border-radius: 50%;
-    border: 0.5px solid rgba(255,255,255,0.2);
+    border: 0.5px solid rgba(5,12,51,0.2);
     background: transparent;
-    color: #fff;
+    color: var(--secondary);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -597,13 +595,13 @@
   }
 
   .nav-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.2;
     cursor: not-allowed;
   }
 
   .nav-btn:hover:not(:disabled) {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(255,255,255,0.4);
+    background: rgba(5,12,51,0.05);
+    border-color: rgba(5,12,51,0.4);
   }
 
   .carousel-dots {
@@ -616,13 +614,13 @@
   .dot {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.25);
+    background: rgba(5,12,51,0.15);
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
   .dot.active {
-    background: #fff;
+    background: var(--secondary);
     transform: scale(1.35);
   }
 
