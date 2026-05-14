@@ -1898,7 +1898,31 @@
     .comp-table td, .comp-table th { padding: 12px 14px; }
     .footer-links-grid { grid-template-columns: 1fr; }
   }
+
+  /* Feature Carousel Nav Overrides for Light Background */
+  #features .carousel-nav {
+    padding: 0 10px;
+    justify-content: flex-start;
+  }
+  #features .nav-btn {
+    border-color: rgba(11, 31, 58, 0.2);
+    color: var(--navy);
+  }
+  #features .nav-btn:disabled {
+    opacity: 0.2;
+  }
+  #features .nav-btn:hover:not(:disabled) {
+    background: rgba(11, 31, 58, 0.05);
+    border-color: rgba(11, 31, 58, 0.4);
+  }
+  #features .dot {
+    background: rgba(11, 31, 58, 0.15);
+  }
+  #features .dot.active {
+    background: var(--navy);
+  }
 </style>
+
 </head>
 <body>
 
