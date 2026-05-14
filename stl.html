@@ -386,21 +386,21 @@
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
   #outcomes {
-    padding: 100px 0;
+    padding: 120px 0;
     width: 100%;
-    background: #F8FAFC; /* Modern App Tint */
+    background: #F1F5F9; /* More distinct tint */
     font-family: 'DM Sans', sans-serif;
     color: var(--text-dark);
     position: relative;
     overflow: hidden;
   }
-  /* Background Glow Blobs */
+  /* Stronger Background Glow Blobs */
   #outcomes::before {
     content: '';
     position: absolute;
-    top: -10%; left: 10%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0, 148, 255, 0.07) 0%, transparent 70%);
+    top: -15%; left: -5%;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0, 148, 255, 0.15) 0%, transparent 70%);
     filter: blur(100px);
     pointer-events: none;
     z-index: 0;
@@ -408,12 +408,21 @@
   #outcomes::after {
     content: '';
     position: absolute;
-    bottom: -10%; right: 5%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(228, 113, 0, 0.05) 0%, transparent 70%);
+    bottom: -15%; right: -5%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(228, 113, 0, 0.12) 0%, transparent 70%);
     filter: blur(80px);
     pointer-events: none;
     z-index: 0;
+  }
+  /* Subtle Dot Grid for "Feel" */
+  .outcomes-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(5, 12, 51, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .outcomes-container {
@@ -2130,6 +2139,7 @@
 
 <!-- ── CUSTOMER OUTCOMES ───────────────────────────── -->
 <section id="outcomes">
+  <div class="outcomes-grid-overlay"></div>
   <div class="outcomes-container">
     <div class="outcomes-intro fade-up">
       <span class="outcomes-eyebrow">REAL RESULTS FROM REAL TRAINING COMPANIES</span>
