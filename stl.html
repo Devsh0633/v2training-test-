@@ -2474,7 +2474,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="pm-card flat-rate">
         <span class="pm-card-badge">SIMPLITRAIN FLAT-RATE</span>
         <div class="pm-model-label">Pricing model: flat per admin, unlimited learners</div>
-        <div class="pm-cost">Same rate</div>
+        <div class="pm-cost" id="pmSimplitrainCost">$2,160 Flat Rate</div>
         <div class="pm-per-label">regardless of learner count</div>
         <div class="pm-desc">Your platform cost is fixed to the number of admins — not learners. <strong>Every new client you win is pure margin.</strong> 100,000 learners costs the same as 100.</div>
       </div>
@@ -2923,6 +2923,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const perLearnerCostDisplay = document.getElementById('pmPerLearnerCost');
     const savingsValueDisplay = document.getElementById('pmSavingsValue');
     const savingsTextDisplay = document.getElementById('pmSavingsText');
+    const simplitrainCostDisplay = document.getElementById('pmSimplitrainCost');
 
     const formatNumber = (num) => num.toLocaleString('en-US');
     const formatCurrency = (num) => '$' + num.toLocaleString('en-US');
@@ -2930,11 +2931,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const updatePricing = () => {
       const learners = parseInt(slider.value, 10);
       const perLearnerCost = learners * 8;
-      const simplitrainBase = 2160;
+      
+      let simplitrainBase = 2160;
+      if (learners > 25000) {
+        simplitrainBase = 9600;
+      } else if (learners > 10000) {
+        simplitrainBase = 6000;
+      } else if (learners > 5000) {
+        simplitrainBase = 3600;
+      } else {
+        simplitrainBase = 2160;
+      }
+
       const savings = perLearnerCost - simplitrainBase;
 
       learnerDisplay.textContent = formatNumber(learners);
       perLearnerCostDisplay.textContent = formatCurrency(perLearnerCost);
+      if (simplitrainCostDisplay) {
+        simplitrainCostDisplay.textContent = formatCurrency(simplitrainBase) + ' Flat Rate';
+      }
       savingsValueDisplay.textContent = '+' + formatCurrency(savings);
       savingsTextDisplay.textContent = `At ${formatNumber(learners)} learners, a standard LMS costs ${formatCurrency(perLearnerCost)} annually. With SimpliTrain's flat rate, you keep the difference.`;
     };
