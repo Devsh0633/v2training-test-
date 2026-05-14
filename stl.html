@@ -407,13 +407,41 @@
   .outcome-card {
     flex: 0 0 340px;
     border-radius: 20px;
-    padding: 32px 28px 24px 28px;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 36px 32px 32px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
   }
+  .outcome-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .outcome-card > * {
+    z-index: 1;
+  }
+  .read-story-link {
+    margin-top: 24px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .read-story-link:hover { opacity: 0.8; }
+
 
   .card-accent-line {
     position: absolute;
@@ -455,23 +483,26 @@
   }
 
   .id-name {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     margin-bottom: 2px;
+    color: #fff !important;
   }
 
   .id-desc {
-    font-size: 11px;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.5;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
   }
 
   .card-quote {
-    font-size: 13.5px;
-    line-height: 1.72;
-    color: rgba(255,255,255,0.65);
-    font-style: italic;
-    margin-bottom: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 32px;
+    margin-top: 10px;
     position: relative;
     z-index: 1;
   }
@@ -486,19 +517,21 @@
   }
 
   .outcome-number {
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 48px;
+    font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     position: relative;
     z-index: 1;
+    color: #fff !important;
+    margin-top: auto;
   }
 
   .outcome-label {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.5);
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
     line-height: 1.4;
     position: relative;
     z-index: 1;
@@ -2309,122 +2342,129 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="carousel-track" id="outcomes-track">
           
           <!-- CARD 1 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #1a3a72 0%, #060d1c 68%);">
-            <div class="card-accent-line" style="background: #3b82f6;"></div>
-            <div class="card-glow" style="background: #3b82f6;"></div>
+          <div class="outcome-card" style="background-color: #8b5cf6; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-01.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">SM</div>
               <div>
-                <div class="id-name" style="color: #60A5FA;">Sarah Mitchell</div>
+                <div class="id-name">Sarah Mitchell</div>
                 <div class="id-desc">Head of Training Operations<br>IT Certification Company</div>
               </div>
             </div>
             <div class="card-quote">"We were manually managing 22 corporate clients. Every new client meant three days of setup — create an org, copy courses, configure branding. With SimpliTrain, our first portal goes live in the same call we close the deal."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #60A5FA;">−85%</div>
+            
+            <div class="outcome-number">−85%</div>
             <div class="outcome-label">Client onboarding time</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 2 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #0d5c55 0%, #051412 68%);">
-            <div class="card-accent-line" style="background: #0d9488;"></div>
-            <div class="card-glow" style="background: #0d9488;"></div>
+          <div class="outcome-card" style="background-color: #3b82f6; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-02.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">JO</div>
               <div>
-                <div class="id-name" style="color: #2DD4BF;">Dr. James Okonkwo</div>
+                <div class="id-name">Dr. James Okonkwo</div>
                 <div class="id-desc">Director of Learning & Compliance<br>Healthcare Training Organisation</div>
               </div>
             </div>
             <div class="card-quote">"We used to chase certificate expiries in a spreadsheet every quarter. Missed renewals were costing us client relationships. SimpliTrain eliminated that completely — renewals happen automatically, 60 days before expiry."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #2DD4BF;">Zero</div>
+            
+            <div class="outcome-number">Zero</div>
             <div class="outcome-label">Missed compliance certificate renewals</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 3 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #3b2174 0%, #0c0820 68%);">
-            <div class="card-accent-line" style="background: #7c3aed;"></div>
-            <div class="card-glow" style="background: #7c3aed;"></div>
+          <div class="outcome-card" style="background-color: #d946ef; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-03.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">KD</div>
               <div>
-                <div class="id-name" style="color: #A78BFA;">Karen Delacroix</div>
+                <div class="id-name">Karen Delacroix</div>
                 <div class="id-desc">VP of Training Delivery<br>National Sales Training Franchise</div>
               </div>
             </div>
             <div class="card-quote">"45 franchise locations, each running different content on different platforms. Now I have one dashboard showing every learner, every certificate, every location — and my coordination overhead has halved."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #A78BFA;">45</div>
+            
+            <div class="outcome-number">45</div>
             <div class="outcome-label">Franchise locations managed from one login</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 4 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #6b1a1a 0%, #140506 68%);">
-            <div class="card-accent-line" style="background: #dc2626;"></div>
-            <div class="card-glow" style="background: #dc2626;"></div>
+          <div class="outcome-card" style="background-color: #10b981; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-04.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">TH</div>
               <div>
-                <div class="id-name" style="color: #FCA5A5;">Tom Hargreaves</div>
+                <div class="id-name">Tom Hargreaves</div>
                 <div class="id-desc">Training & Compliance Manager<br>Aviation Safety Training Centre</div>
               </div>
             </div>
             <div class="card-quote">"In aviation, a missed certification record means a grounded aircraft. SimpliTrain's automated expiry tracking and one-click audit reports mean we walk into every EASA inspection completely prepared — every time."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #FCA5A5;">100%</div>
+            
+            <div class="outcome-number">100%</div>
             <div class="outcome-label">Regulatory audit pass rate maintained</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 5 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #6b4208 0%, #140c02 68%);">
-            <div class="card-accent-line" style="background: #d97706;"></div>
-            <div class="card-glow" style="background: #d97706;"></div>
+          <div class="outcome-card" style="background-color: #f43f5e; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-05.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">PC</div>
               <div>
-                <div class="id-name" style="color: #FCD34D;">Priya Chandrasekaran</div>
+                <div class="id-name">Priya Chandrasekaran</div>
                 <div class="id-desc">Head of Learning & Development<br>Financial Compliance Training Provider</div>
               </div>
             </div>
             <div class="card-quote">"We deliver AML and BSA compliance training to 50 banking clients. Generating a full audit report used to take two days of manual work. Now it takes 30 seconds — and the data is always accurate."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #FCD34D;">−98%</div>
+            
+            <div class="outcome-number">−98%</div>
             <div class="outcome-label">Time to generate compliance audit reports</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 6 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #14451a 0%, #050e06 68%);">
-            <div class="card-accent-line" style="background: #16a34a;"></div>
-            <div class="card-glow" style="background: #16a34a;"></div>
+          <div class="outcome-card" style="background-color: #f59e0b; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-01.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">MF</div>
               <div>
-                <div class="id-name" style="color: #86EFAC;">Mark Featherstone</div>
+                <div class="id-name">Mark Featherstone</div>
                 <div class="id-desc">Founder & CEO<br>Corporate Training Provider</div>
               </div>
             </div>
             <div class="card-quote">"Our old platform was costing us $120,000 a year in developer fees. We switched to SimpliTrain and cut that to less than a third in year one — while adding features we could never have built ourselves."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #86EFAC;">$60K+</div>
+            
+            <div class="outcome-number">$60K+</div>
             <div class="outcome-label">Platform cost savings in year one</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
           <!-- CARD 7 -->
-          <div class="outcome-card" style="background: radial-gradient(ellipse at 15% 15%, #273752 0%, #080c12 68%);">
-            <div class="card-accent-line" style="background: #64748b;"></div>
-            <div class="card-glow" style="background: #64748b;"></div>
+          <div class="outcome-card" style="background-color: #6366f1; background-image: url('https://www.docebo.com/content/themes/phoenix/patterns/assets/testimonial-bg-02.webp');">
+            
+            
             <div class="card-identity">
               <div class="avatar-circle">AW</div>
               <div>
-                <div class="id-name" style="color: #CBD5E1;">Adaeze Williams</div>
+                <div class="id-name">Adaeze Williams</div>
                 <div class="id-desc">Senior Training Coordinator<br>Industrial Safety Training Company</div>
               </div>
             </div>
             <div class="card-quote">"Our field trainers work on oil rigs and construction sites with no internet. SimpliTrain's offline delivery means they complete safety modules wherever they are, and records sync the moment they reconnect."</div>
-            <div class="card-divider"></div>
-            <div class="outcome-number" style="color: #CBD5E1;">3×</div>
+            
+            <div class="outcome-number">3×</div>
             <div class="outcome-label">Learner course completion rate</div>
+            <a href="#" class="read-story-link">READ STORY &rarr;</a>
           </div>
 
         </div>
