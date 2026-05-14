@@ -598,19 +598,41 @@
 
   /* ── FEATURES ──────────────────────────────────── */
   #features {
-    padding: 100px 24px;
-    background: var(--white);
+    padding: 80px 24px;
+    background: var(--gray-100);
   }
-  .features-intro { text-align: center; margin-bottom: 72px; }
-  .feature-block {
+  .features-intro { text-align: center; margin-bottom: 64px; }
+  .features-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
   }
-  .feature-block:last-child { margin-bottom: 0; }
-  .feature-block.reverse .feature-copy { order: -1; }
+  .feature-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    margin-bottom: 0 !important;
+  }
+  .feature-block .feature-visual {
+    order: 2;
+    margin-top: auto;
+  }
+  .feature-block .feature-copy {
+    order: 1;
+  }
+  .feature-block.reverse .feature-copy { order: 1; }
+  .feature-block h2 {
+    font-size: 24px !important;
+  }
+  
+  @media (max-width: 900px) {
+    .features-wrapper { grid-template-columns: 1fr; }
+  }
   .feature-visual {
     border-radius: var(--radius);
     overflow: hidden;
@@ -1982,6 +2004,7 @@
       <p class="section-sub" style="margin:12px auto 0;">Most LMS platforms show course completions. Most scheduling tools show calendar slots. SimpliTrain shows you the full picture — programs, clients, trainers, and performance — in one connected system.</p>
     </div>
 
+    <div class="features-wrapper">
     <!-- Feature 1: Multi-client portals -->
     <div class="feature-block fade-up">
       <div class="feature-visual">
@@ -2155,6 +2178,7 @@
         </div>
       </div>
     </div>
+    </div> <!-- End features-wrapper -->
   </div>
 </section>
 
