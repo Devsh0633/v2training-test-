@@ -2032,6 +2032,21 @@
   #features .dot.active {
     background: var(--navy);
   }
+
+  /* Color Utility Classes */
+  .tag-orange { background: rgba(245, 158, 11, 0.1) !important; color: #D97706 !important; border: 1px solid rgba(245, 158, 11, 0.2) !important; }
+  .tag-purple { background: rgba(139, 92, 246, 0.1) !important; color: #7C3AED !important; border: 1px solid rgba(139, 92, 246, 0.2) !important; }
+  .tag-emerald { background: rgba(16, 185, 129, 0.1) !important; color: #059669 !important; border: 1px solid rgba(16, 185, 129, 0.2) !important; }
+  .tag-cyan { background: rgba(14, 165, 184, 0.1) !important; color: #0891B2 !important; border: 1px solid rgba(14, 165, 184, 0.2) !important; }
+
+  .mock-orange { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%) !important; }
+  .mock-purple { background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%) !important; }
+  .mock-emerald { background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%) !important; }
+  .mock-cyan { background: linear-gradient(135deg, #ECFEFF 0%, #CFFAFE 100%) !important; }
+  
+  .bg-glow-orange { background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 70%); }
+  .bg-glow-purple { background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 70%); }
+
 </style>
 
 </head>
@@ -2378,7 +2393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Feature 1: Multi-client portals -->
     <div class="feature-block fade-up">
       <div class="feature-visual">
-        <div class="feature-mock">
+        <div class="feature-mock mock-orange">
           <div class="fm-header">
             <span class="fm-title">Client Portals</span>
             <span class="fm-badge">48 Active</span>
@@ -2415,7 +2430,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
       <div class="feature-copy">
-        <span class="tag">Demand Capture</span>
+        <span class="tag tag-orange">Demand Capture</span>
         <h2>Sell More Courses</h2>
         <p class="feature-desc" style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin-bottom: 24px;">Capture demand, nurture learners, and convert them into revenue with personalized journeys.</p>
         
@@ -2425,7 +2440,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Feature 2: Scheduling (reversed) -->
     <div class="feature-block reverse fade-up">
       <div class="feature-copy">
-        <span class="tag">Global Expansion</span>
+        <span class="tag tag-purple">Global Expansion</span>
         <h2>Scale Across Locations</h2>
         <p class="feature-desc" style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin-bottom: 24px;">Run multiple training locations seamlessly with centralized visibility and localized execution so you can scale without losing control.</p>
         
@@ -2488,7 +2503,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
       <div class="feature-copy">
-        <span class="tag">Growth Engine</span>
+        <span class="tag tag-emerald">Growth Engine</span>
         <h2>Launch, Monetize, and Expand</h2>
         <p class="feature-desc" style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin-bottom: 24px;">Turn your training business into a scalable revenue engine with built-in ecommerce, seamless integrations, and complete visibility into what drives growth.</p>
         
@@ -2498,7 +2513,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Feature 4: AI Authoring (reversed) -->
     <div class="feature-block reverse fade-up">
       <div class="feature-copy">
-        <span class="tag">Business Intelligence</span>
+        <span class="tag tag-cyan">Business Intelligence</span>
         <h2>Turn Your Platform into a Revenue Engine</h2>
         <p class="feature-desc" style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin-bottom: 24px;">Track revenue leakage, underfilled cohorts, trainer profitability, repeat enrollments, and program-wise growth—not just course completions.</p>
         
@@ -2623,7 +2638,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <tr>
             <th>What You Need</th>
             <th>Standard LMS / TMS Platforms</th>
-            <th><span>✅ SimpliTrain</span></th>
+            <th style="background: linear-gradient(135deg, #0094FF 0%, #0EA5B9 100%); color: white; border-radius: 12px 12px 0 0;"><span>✅ SimpliTrain</span></th>
           </tr>
         </thead>
         <tbody>
@@ -2698,7 +2713,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div class="pm-cards fade-up">
       <!-- Left Card -->
-      <div class="pm-card per-learner">
+      <div class="pm-card per-learner" style="border-top: 4px solid var(--purple);">
         <span class="pm-card-badge">PER-LEARNER LMS</span>
         <div class="pm-model-label">Pricing model: charged per learner per year</div>
         <div class="pm-cost" id="pmPerLearnerCost">$40,000</div>
@@ -2706,7 +2721,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pm-desc">Every time you onboard a new client, your cost goes up. <strong>Growth punishes you.</strong> Scale from 5,000 to 10,000 learners and your annual bill doubles.</div>
       </div>
       <!-- Right Card -->
-      <div class="pm-card flat-rate">
+      <div class="pm-card flat-rate" style="border-top: 4px solid var(--tertiary);">
         <span class="pm-card-badge">SIMPLITRAIN FLAT-RATE</span>
         <div class="pm-model-label">Pricing model: flat per admin, unlimited learners</div>
         <div class="pm-cost" id="pmSimplitrainCost">$2,160 Flat Rate</div>
@@ -2726,10 +2741,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="pm-pills fade-up">
-      <span class="pm-pill">Unlimited learners on every plan</span>
-      <span class="pm-pill">No per-learner overage fees</span>
-      <span class="pm-pill">Price fixed to admin seats only</span>
-      <span class="pm-pill">Full ROI typically within 6 months</span>
+      <span class="pm-pill" style="border-left: 3px solid var(--amber);">Unlimited learners on every plan</span>
+      <span class="pm-pill" style="border-left: 3px solid var(--amber);">No per-learner overage fees</span>
+      <span class="pm-pill" style="border-left: 3px solid var(--amber);">Price fixed to admin seats only</span>
+      <span class="pm-pill" style="border-left: 3px solid var(--amber);">Full ROI typically within 6 months</span>
     </div>
 
     <div class="pm-cta-row fade-up">
