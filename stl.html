@@ -982,62 +982,55 @@
   }
 
   /* ── METRICS ───────────────────────────────────── */
+  
   #metrics {
-    background: var(--navy);
-    padding: 80px 24px;
+    background: #F8FAFC;
+    padding: 100px 24px;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
     position: relative;
     overflow: hidden;
   }
   #metrics::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 900px 300px at 50% 50%, rgba(0,148,255,.08) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 148, 255, 0.03) 0%, transparent 70%);
   }
   .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
+    gap: 32px;
   }
   .metric-item {
-    text-align: center;
-    padding: 48px 32px;
-    position: relative;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: 0 4px 20px rgba(5, 12, 51, 0.03);
+    transition: transform 0.3s ease;
   }
-  .metric-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 25%; bottom: 25%; right: 0;
-    width: 1px;
-    background: rgba(255,255,255,.12);
-  }
+  .metric-item:hover { transform: translateY(-5px); }
+  .metric-item::after { display: none !important; }
+  
   .metric-num {
-    font-size: clamp(44px, 6vw, 64px);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
-    background: linear-gradient(135deg, #fff 30%, var(--cyan-soft));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 56px !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: var(--navy);
   }
+  /* Specific colors for pop */
+  .metric-item:nth-child(1) .metric-num { color: var(--blue); }
+  .metric-item:nth-child(2) .metric-num { color: #10B981; } /* Emerald */
+  .metric-item:nth-child(3) { 
+    background: #FFF7ED; 
+    border-color: #FED7AA;
+    box-shadow: 0 10px 30px rgba(234, 88, 12, 0.08);
+  }
+  .metric-item:nth-child(3) .metric-num { color: #EA580C; font-weight: 900; } /* Vibrant Orange Pop */
+  
   .metric-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255,255,255,.55);
-    margin-top: 10px;
-    line-height: 1.5;
+    color: #475569 !important;
   }
   .metric-label strong {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: rgba(255,255,255,.85);
-    margin-bottom: 4px;
+    color: #1E293B !important;
   }
+
 
   /* ── TESTIMONIALS ──────────────────────────────── */
   #testimonials {
