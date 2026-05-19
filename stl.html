@@ -485,6 +485,54 @@
     max-width: 600px;
   }
 
+  /* Outcomes Infinite Marquee Overrides */
+  #outcomes .carousel-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    padding: 24px 0; /* Prevents shadow clipping on hover scale */
+    margin-top: 40px;
+  }
+
+  #outcomes .carousel-track-container {
+    overflow: visible;
+    width: 100%;
+  }
+
+  #outcomes-track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: outcomesMarquee 45s linear infinite;
+    transition: none !important;
+    will-change: transform;
+  }
+
+  #outcomes-track:hover {
+    animation-play-state: paused !important;
+  }
+
+  #outcomes-track.paused {
+    animation-play-state: paused !important;
+  }
+
+  #outcomes .carousel-nav {
+    display: none !important; /* Hide navigation buttons and dots */
+  }
+
+  @keyframes outcomesMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-50% - 8px)); /* Mathematically perfect seamless marquee loop */
+    }
+  }
+
   /* Carousel */
   .carousel-wrapper {
     position: relative;
@@ -2915,64 +2963,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const track = document.getElementById('outcomes-track');
-  const prevBtn = document.getElementById('prev-outcomes');
-  const nextBtn = document.getElementById('next-outcomes');
-  const dotsContainer = document.getElementById('outcomes-dots');
-  const cards = Array.from(track.children);
+  if (!track) return;
   
-  let currentIndex = 0;
-  const totalCards = cards.length;
-  
-  // Create dots
-  cards.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => jumpToIndex(i));
-    dotsContainer.appendChild(dot);
-  });
-  
-  const dots = Array.from(dotsContainer.children);
-
-  function updateCarousel() {
-    const cardWidth = cards[0].offsetWidth;
-    const gap = 16;
-    const offset = currentIndex * (cardWidth + gap);
-    track.style.transform = `translateX(-${offset}px)`;
-    
-    // Update buttons
-    prevBtn.disabled = currentIndex === 0;
-    
-    // Calculate visible cards to determine if next is disabled
-    const visibleCount = window.innerWidth >= 1024 ? 2.5 : (window.innerWidth >= 768 ? 1.5 : 1.2);
-    nextBtn.disabled = currentIndex >= totalCards - Math.floor(visibleCount);
-    
-    // Update dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
-  }
-
-  function jumpToIndex(index) {
-    currentIndex = index;
-    updateCarousel();
-  }
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < totalCards - 1) {
-      currentIndex++;
-      updateCarousel();
-    }
+  // Clone each card once to build a seamless infinite marquee track
+  const originalCards = Array.from(track.children);
+  originalCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
   });
 
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  });
+  // Touch controls to pause scrolling on mobile devices
+  track.addEventListener('touchstart', function() {
+    track.classList.add('paused');
+  }, { passive: true });
 
-  window.addEventListener('resize', updateCarousel);
-  updateCarousel();
+  track.addEventListener('touchend', function() {
+    track.classList.remove('paused');
+  }, { passive: true });
 });
 </script>
 
