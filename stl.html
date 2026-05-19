@@ -789,10 +789,10 @@
   .features-track {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 32px;
+    gap: 24px;
   }
   .feature-block {
-    flex: 0 0 calc(50% - 16px);
+    flex: 0 0 calc(40% - 19.2px); /* Fits exactly 2.5 cards visible in container with a 24px gap */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -2114,27 +2114,94 @@
     .footer-links-grid { grid-template-columns: 1fr; }
   }
 
-  /* Feature Carousel Nav Overrides for Light Background */
-  #features .carousel-nav {
-    padding: 0 10px;
-    justify-content: flex-start;
+  /* Feature Carousel Nav Overrides - Premium Absolute Arrows & Centered Dots */
+  #features .features-carousel-wrapper {
+    position: relative;
+    padding: 0 24px; /* Room for absolute arrows */
   }
+
   #features .nav-btn {
-    border-color: rgba(11, 31, 58, 0.2);
-    color: var(--navy);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--white) !important;
+    border: 1.5px solid var(--gray-200) !important;
+    box-shadow: 0 6px 20px rgba(5, 12, 51, 0.08) !important;
+    color: var(--navy) !important;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
   }
-  #features .nav-btn:disabled {
-    opacity: 0.2;
-  }
+
   #features .nav-btn:hover:not(:disabled) {
-    background: rgba(11, 31, 58, 0.05);
-    border-color: rgba(11, 31, 58, 0.4);
+    background: #F8FAFC !important;
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 8px 24px rgba(5, 12, 51, 0.12) !important;
+    border-color: var(--gray-300) !important;
   }
+
+  #features #prev-features {
+    left: -24px;
+  }
+
+  #features #next-features {
+    right: -24px;
+  }
+
+  #features .nav-btn:disabled {
+    opacity: 0.25 !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+    border-color: var(--gray-200) !important;
+  }
+
+  #features .carousel-dots-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  #features .carousel-dots {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
   #features .dot {
-    background: rgba(11, 31, 58, 0.15);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(11, 31, 58, 0.2) !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
+
   #features .dot.active {
-    background: var(--navy);
+    background: #000000 !important; /* solid black active dot as requested */
+    transform: scale(1.3);
+  }
+
+  @media (max-width: 900px) {
+    #features .features-carousel-wrapper {
+      padding: 0;
+    }
+    #features #prev-features {
+      left: 8px;
+    }
+    #features #next-features {
+      right: 8px;
+    }
+    #features .nav-btn {
+      width: 42px;
+      height: 42px;
+    }
   }
 
   /* Color Utility Classes */
@@ -2576,14 +2643,16 @@
     </div>
         </div>
       </div>
-      <!-- Nav Bar -->
-      <div class="carousel-nav" style="margin-top: 40px;">
-        <button class="nav-btn" id="prev-features" disabled>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="nav-btn" id="next-features">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
+      <!-- Navigation Arrows -->
+      <button class="nav-btn carousel-arrow-left" id="prev-features" disabled>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="nav-btn carousel-arrow-right" id="next-features">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <!-- Center Dots Container -->
+      <div class="carousel-dots-container">
         <div class="carousel-dots" id="features-dots">
           <!-- JS will populate -->
         </div>
@@ -2616,16 +2685,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateCarousel() {
     const cardWidth = cards[0].offsetWidth;
-    const gap = 32;
-    const offset = currentIndex * (cardWidth + gap);
+    const gap = 24; // Updated for 2.5 cards layout
+    const containerWidth = track.parentElement.offsetWidth;
+    
+    // Dynamic total track width and maximum offset to avoid empty space on desktop
+    const totalTrackWidth = totalCards * cardWidth + (totalCards - 1) * gap;
+    const maxOffset = Math.max(0, totalTrackWidth - containerWidth);
+    
+    // Calculate dynamic max index where the scrolling can reach
+    const maxIndex = Math.ceil(maxOffset / (cardWidth + gap));
+    
+    if (currentIndex > maxIndex) {
+      currentIndex = maxIndex;
+    }
+    
+    let offset = currentIndex * (cardWidth + gap);
+    if (offset > maxOffset) {
+      offset = maxOffset;
+    }
+    
     track.style.transform = `translateX(-${offset}px)`;
     
     prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= maxIndex;
     
-    const visibleCount = window.innerWidth >= 900 ? 2 : 1;
-    nextBtn.disabled = currentIndex >= totalCards - Math.floor(visibleCount);
-    
+    // Dynamically show dots only for valid indexes, hiding extra dots on desktop
     dots.forEach((dot, i) => {
+      dot.style.display = i <= maxIndex ? 'block' : 'none';
       dot.classList.toggle('active', i === currentIndex);
     });
   }
@@ -2636,8 +2722,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   nextBtn.addEventListener('click', () => {
-    const visibleCount = window.innerWidth >= 900 ? 2 : 1;
-    if (currentIndex < totalCards - Math.floor(visibleCount)) {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 24;
+    const containerWidth = track.parentElement.offsetWidth;
+    const totalTrackWidth = totalCards * cardWidth + (totalCards - 1) * gap;
+    const maxOffset = Math.max(0, totalTrackWidth - containerWidth);
+    const maxIndex = Math.ceil(maxOffset / (cardWidth + gap));
+    
+    if (currentIndex < maxIndex) {
       currentIndex++;
       updateCarousel();
     }
