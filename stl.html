@@ -390,6 +390,28 @@
     margin-bottom: 24px;
   }
 
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-top: 16px;
+  }
+
+  .hero-trust span {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+  }
+
+  .trust-tick {
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
    /* ── OUTCOMES CAROUSEL ──────────────────────────── */
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
@@ -2220,7 +2242,21 @@
       </div>
 
       <div class="hero-trust fade-up">
-        <span>Flat-rate pricing · No per-learner fees · Live in 2 weeks</span>
+        <span>
+          <svg class="trust-tick" width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3L4.5 8.5L2 6" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Flat-rate pricing
+        </span>
+        <span>
+          <svg class="trust-tick" width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3L4.5 8.5L2 6" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>No per-learner fees
+        </span>
+        <span>
+          <svg class="trust-tick" width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3L4.5 8.5L2 6" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>Live in 2 weeks
+        </span>
       </div>
     </div>
 
